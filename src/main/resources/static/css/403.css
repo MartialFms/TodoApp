@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: black;
+}
+.container {
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+}
+img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+    transform: translate(-50%, -50%);
+}
+.jail {
+
+}
+.mickey.boots {
+  clip-path: polygon(552px 375px,552px 457px,542px 464px,470px 464px,458px 456px,449px 456px,450px 376px);
+}
+
+.mickey.head {
+  clip-path: polygon(449px 153px,459px 156px,461px 138px,475px 128px,493px 109px,502px 112px,503px 118px,515px 115px,522px 111px,534px 113px,526px 106px,522px 91px,551px 91px,551px 367px,449px 367px);
+}
+
+.mickey.right-hand {
+  clip-path: polygon(435px 166px,434px 247px,412px 231px,408px 214px,421px 194px,419px 184px,423px 174px,432px 161px);
+}
+.mickey.back {
+  clip-path: polygon(610px 92px,596px 111px,572px 121px,572px 130px,583px 142px,591px 162px,600px 146px,613px 138px,634px 137px,652px 147px,668px 171px,667px 199px,648px 218px,621px 221px,596px 206px,592px 197px,589px 205px,601px 228px,600px 245px,588px 261px,625px 299px,640px 334px,670px 338px,670px 343px,641px 340px,633px 355px,614px 364px,568px 365px,568px 92px);
+}
+.mickey.ear-top-left {
+  clip-path: polygon(532px 60px,552px 48px,552px 80px,524px 80px);
+}
+.mickey.ear-top-right {
+  clip-path: polygon(576px 45px,594px 48px,608px 59px,612px 80px,567px 79px,568px 44px);
+}
+.mickey.boots-left {
+  clip-path: polygon(413px 399px,407px 416px,411px 438px,434px 453px,434px 379px);
+}
+.mickey.boots-right {
+  clip-path: polygon(567px 375px,645px 374px,622px 398px,618px 423px,614px 413px,618px 396px,635px 376px,578px 376px,584px 393px,583px 410px,569px 440px);
+}
+
+.mickey {
+  filter: brightness(50%);
+}
+.container:hover {
+  animation: kenburns 20s infinite;
+  .jail {
+    filter: grayscale(100%) blur(5px);
+    transition: filter 5s;
+  }
+  .mickey {
+    animation: focus-mickey 20s infinite;
+  }
+}
+
+@keyframes kenburns {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        transform: scale3d(1.5, 1.5, 1.5) translate3d(-10px, 50px, 0px);
+        animation-timing-function: ease-in;
+        opacity: 1;
+    }
+    100% {
+        transform: scale3d(2.0, 2.0, 2.0) translate3d(-370px, -200px, 0px);
+        opacity: 0;
+    }
+}
+
+@keyframes focus-mickey {
+  0% {
+    filter: sepia(0%) blur(1px) brightness(40%);
+  }
+  100% {
+    filter: sepia(100%) blur(0) brightness(100%);
+  }
+}

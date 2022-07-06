@@ -1,0 +1,69 @@
+html {
+	height: 100%;
+}
+
+body {
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.title {
+	color: rgba(0, 0, 0, 0.5);
+	font-size: 50px;
+}
+
+.titleName {
+	color:white;
+	display:flex;
+	justify-content:center;
+	padding-top:50px;
+	background-image: url('../images/boutique.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	font-size: 50px;
+	height:570px;
+	width: 100%;
+	
+}
+
+.authName{
+	margin-top:15px;
+	margin-right:5px;
+}
+
+.er-picture {
+	width: 50%;
+	height: 50%;
+}
+
+.category {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	color: white;
+}
+
+.pictureArticles {
+	height: 50px;
+	width: 15px;
+}
+.cube{
+	display:flex;
+	justify-content:start;
+}
+#btnHome{
+	border-radius :50px;
+
+}
+#loginPage{
+	display:flex;
+}
