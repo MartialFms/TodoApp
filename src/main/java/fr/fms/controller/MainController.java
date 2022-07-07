@@ -1,6 +1,8 @@
 package fr.fms.controller;
 
 import java.security.Principal;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -110,10 +112,10 @@ public class MainController {
 		return "task-manager";
 	}
 	
-	@PostMapping("/saveTask")
-	public String save(@Valid UserTask userTask, BindingResult bindingResult) {
+	@PostMapping("/saveNewTask")
+	public String saveNewTask(@Valid UserTask userTask, BindingResult bindingResult) {
 		if (bindingResult.hasErrors())
-			return "edit";
+			return "add-task";
 		userTaskRepository.save(userTask);
 		return "redirect:/task-manager";
 	}
@@ -129,8 +131,15 @@ public class MainController {
 		
 		businessImpl.nameAuth(model);
 		List<UserTask> tasks = userTaskRepository.findAll();
+		UserTask task = new UserTask();
+		task.setStartDate(new Date());
+		//task.setStartDate(Calendar.getInstance());					>> https://www.jmdoudoux.fr/java/dej/chap-utilisation_dates.htm
+		task.setEndDate(new Date());
+		task.setStatus(1);
+		task.setUser(null);
+		task.setTaskTable(null);
 		model.addAttribute("taskList", tasks);
-		model.addAttribute("userTask", new UserTask());
+		model.addAttribute("userTask", task);
 		return "add-task";
 	}
 	

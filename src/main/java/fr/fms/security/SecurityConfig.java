@@ -66,9 +66,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// Gestion des accès
 			
 	    http.authorizeRequests()
-			.antMatchers("/task-manager","/edit-task").hasRole("ADMIN")
-			.antMatchers("/task-manager","/edit-task").hasRole("USER")
+			.antMatchers("/task-manager","/add-task").hasRole("ADMIN")
+			.antMatchers("/task-manager").hasRole("USER")
 			.anyRequest().permitAll();
+	    
+//	    http.authorizeRequests()
+//			.antMatchers("/task-manager","/edit-task").hasRole("ADMIN")
+//			.antMatchers("/task-manager","/edit-task").hasRole("USER")
+//			.anyRequest().permitAll();
 		  
 		http.exceptionHandling().accessDeniedPage("/403");	//au cas ou un utilisateur tente d'accéder à une page non authorisée
 		

@@ -69,21 +69,20 @@ public class IBusinessImpl implements IBusiness {
 
 	public void generateAccountValues() {
 
-		Role admin = roleRepository.save(new Role(null, "ADMIN"));
-		Role user = roleRepository.save(new Role(null, "USER"));
-//		Collection<Role> adminRole = new ArrayList<Role>(); adminRole.add(admin);
-//		Collection<Role> userRole= new ArrayList<Role>();; userRole.add(user);
-//		Collection<Role> bothRole= new ArrayList<Role>();; bothRole.add(user); bothRole.add(admin);
+		roleRepository.save(new Role(null, "ADMIN"));
+		roleRepository.save(new Role(null, "USER"));
 
-		User user0 = userRepository.save(new User(null, "admin", "Admin", "Owner", encodePassword("fms2022"),"ADMIN",true,null));
-		User user1 = userRepository.save(new User(null, "martial.derand@fms.com", "Martial", "Derand", encodePassword("fms2022"),"USER",true,null));
-		User user2 = userRepository.save(new User(null, "mathieu.fix@fms.com", "Mathieu", "Fix", encodePassword("fms2022"), "USER",true,null));
-		User user3 = userRepository.save(new User(null, "eric.mauler@fms.com", "Eric", "Mauler", encodePassword("fms2022"), "USER",true,null));
-		User user4 = userRepository.save(new User(null, "tristan.laclau@fms.com", "Tristan", "Laclau", encodePassword("fms2022"), "USER",true,null));
+
+		userRepository.save(new User(null, "admin", "Admin", "Owner", encodePassword("fms2022"),"ADMIN",true,null));
+		userRepository.save(new User(null, "admin", "Admin", "Owner", encodePassword("fms2022"),"USER",true,null));
+		userRepository.save(new User(null, "martial.derand@fms.com", "Martial", "Derand", encodePassword("fms2022"),"USER",true,null));
+		userRepository.save(new User(null, "mathieu.fix@fms.com", "Mathieu", "Fix", encodePassword("fms2022"), "USER",true,null));
+		userRepository.save(new User(null, "eric.mauler@fms.com", "Eric", "Mauler", encodePassword("fms2022"), "USER",true,null));
+		userRepository.save(new User(null, "tristan.laclau@fms.com", "Tristan", "Laclau", encodePassword("fms2022"), "USER",true,null));
 
 		TaskTable exemple = taskTableRepository.save(new TaskTable(null,"exemple",null));
 
-		UserTask task0 = userTaskRepository.save(new UserTask(null,"exemple1", "premier essai", IBusinessImpl.parseDate("2022-05-15 09:32:51"), IBusinessImpl.parseDate("2022-05-15 09:32:51"), 1, user0, exemple ));
+		//UserTask task0 = userTaskRepository.save(new UserTask(null,"exemple1", "premier essai", IBusinessImpl.parseDate("2022-05-15 09:32:51"), IBusinessImpl.parseDate("2022-05-15 09:32:51"), 1, user0, exemple ));
 
 			}
 }
