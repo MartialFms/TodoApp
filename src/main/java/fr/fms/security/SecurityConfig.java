@@ -66,8 +66,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// Gestion des accès
 			
 	    http.authorizeRequests()
-			.antMatchers("/task-manager","/add-task").hasRole("ADMIN")
-			.antMatchers("/task-manager").hasRole("USER")
+			.antMatchers("/addTask","/editTask","/tables","/user").hasRole("ADMIN")
+			.antMatchers("/addTask","/editTask","/tables").hasRole("USER")
 			.anyRequest().permitAll();
 	    
 //	    http.authorizeRequests()

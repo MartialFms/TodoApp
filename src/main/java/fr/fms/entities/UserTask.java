@@ -31,6 +31,7 @@ public class UserTask implements Serializable {
 	private Long id;
 	private String title;
 	private String description;
+	private TaskType taskType;
 	private Date startDate;
 	private Date endDate;
 	private int status;				// 1-To do . 2-In progress . 3-Done

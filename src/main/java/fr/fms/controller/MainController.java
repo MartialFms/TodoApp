@@ -28,9 +28,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.business.IBusinessImpl;
 import fr.fms.dao.TaskTableRepository;
+import fr.fms.dao.TaskTypeRepository;
 import fr.fms.dao.UserRepository;
 import fr.fms.dao.UserTaskRepository;
 import fr.fms.entities.TaskTable;
+import fr.fms.entities.TaskType;
 import fr.fms.entities.User;
 import fr.fms.entities.UserTask;
 
@@ -49,6 +51,9 @@ public class MainController {
 	
 	@Autowired
 	public TaskTableRepository taskTableRepository;
+	
+	@Autowired
+	public TaskTypeRepository taskTypeRepository;
 	
 	@Autowired
 	IBusinessImpl businessImpl;
@@ -70,6 +75,7 @@ public class MainController {
 
 	@GetMapping("/home")
 	public String home(Model model) {
+		businessImpl.nameAuth(model);
 		return "home";
 	}
 
@@ -94,14 +100,19 @@ public class MainController {
 		return "redirect:/login";
 	}
 	
-	@GetMapping("/task-manager")
+	@GetMapping("/tasks")
 	public String taskManager(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
 				@RequestParam(name = "keyword", defaultValue = "") String kw,
 				@RequestParam(name = "table", defaultValue = "0") long tableId) {
 		
 			List<TaskTable> taskTable = taskTableRepository.findAll();
 			Page<UserTask> tasks;
-			tasks = userTaskRepository.findByTitleContains(kw, PageRequest.of(page, 5));
+			User userConnected = businessImpl.getConnectedUser();
+			//tasks = userTaskRepository.findByTitleContains(kw, PageRequest.of(page, 5));
+			tasks = userTaskRepository.findByUser( userConnected , PageRequest.of(page, 5));
+//			Page<UserTask> UserTasks;
+			
+			
 			List<User> users = userRepository.findAll();
 			model.addAttribute("keyword", kw);
 			model.addAttribute("tableList", taskTable);
@@ -109,46 +120,62 @@ public class MainController {
 			model.addAttribute("user", users);			// users.getContent()
 			model.addAttribute("pages", new int[tasks.getTotalPages()]);
 			model.addAttribute("currentPage", page);
-		return "task-manager";
+		return "tasks";
 	}
 	
-	@PostMapping("/saveNewTask")
-	public String saveNewTask(@Valid UserTask userTask, BindingResult bindingResult) {
+	@PostMapping("/saveTask")
+	public String saveTask(@Valid UserTask userTask, BindingResult bindingResult) {
 		if (bindingResult.hasErrors())
 			return "add-task";
 		userTaskRepository.save(userTask);
-		return "redirect:/task-manager";
+		return "redirect:/tasks";
 	}
 	
-	@GetMapping("/table-manager")
+	@GetMapping("/table")
 	public String tableManager(Model model) {
-		return "table-manager";
+		return "table";
 	}
 
 	
-	@GetMapping("/add-task")
+	@GetMapping("/addTask")
 	public String addTask(Model model) {
 		
 		businessImpl.nameAuth(model);
 		List<UserTask> tasks = userTaskRepository.findAll();
+		List<TaskType> taskTypes = taskTypeRepository.findAll();
 		UserTask task = new UserTask();
 		task.setStartDate(new Date());
 		//task.setStartDate(Calendar.getInstance());					>> https://www.jmdoudoux.fr/java/dej/chap-utilisation_dates.htm
-		task.setEndDate(new Date());
-		task.setStatus(1);
-		task.setUser(null);
-		task.setTaskTable(null);
+//		task.setEndDate(new Date());
+//		task.setStatus(1);
+//		task.setUser(null);
+//		task.setTaskTable(null);
 		model.addAttribute("taskList", tasks);
 		model.addAttribute("userTask", task);
-		return "add-task";
+		model.addAttribute("taskTypes", taskTypes);
+		
+		model.addAttribute("currentDate", new Date());
+		model.addAttribute("status", 1);
+		model.addAttribute("user", null);
+		model.addAttribute("table", null);
+		
+		return "addTask";
 	}
 	
-	@GetMapping("/edit-task")
-	public String editTask(Model model) {
-		return "edit-task";
+	@GetMapping("/editTask")
+	public String editTask(Long id, Model model)  {
+		UserTask userTask= userTaskRepository.findById(id).get();
+		model.addAttribute("userTask", userTask);
+		return "editTask";
 	}
 	
-	@GetMapping("/user-manager")
+	@GetMapping("/deleteTask")
+	public String deleTask(Long id, int page, String keyword) {
+		userTaskRepository.deleteById(id);
+		return "redirect:/tasks?page=" + page + "&keyword=" + keyword;
+	}
+	
+	@GetMapping("/user")
 	public String userManager(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "keyword", defaultValue = "") String kSearch,
 			@RequestParam(name = "table", defaultValue = "0") long tableId) {
@@ -160,7 +187,7 @@ public class MainController {
 		model.addAttribute("userList", users);			// users.getContent()
 		model.addAttribute("pages", new int[users.getTotalPages()]);
 		model.addAttribute("currentPage", page);
-		return "user-manager";
+		return "user";
 	}
 	
 

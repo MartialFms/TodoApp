@@ -35,7 +35,7 @@
 				<div class="col-7"></div>
 				<div class="col-2">
 				<a class="btn btn-success"
-								th:href="@{/add-task}">Add task</a>
+								th:href="@{/addTask}">Add task</a>
 				</div>
 
 
@@ -45,6 +45,7 @@
 
 							<th>Task</th>
 							<th>Description</th>
+							<th>Category</th>
 							<th>Start</th>
 							<th>End</th>
 							<th>Status</th>
@@ -55,6 +56,7 @@
 
 							<td th:text=${task.title}></td>
 							<td th:text="${task.description}"></td>
+							<td th:text="${task.taskType.name}"></td>
 							<td th:text="${task.startDate}"></td>
 							<td th:text="${task.endDate}"></td>
 							<td th:text="${task.status}"></td>
@@ -62,7 +64,7 @@
 								th:href="@{/deleteTask(id=${task.id} , page=${currentPage},keyword=${keyword})}"
 								sec:authorize="hasRole('ROLE_ADMIN')">Delete</a> <a
 								class="btn btn-warning ms-4"
-								th:href="@{/editTask(id=${task.id})}"
+								th:href="@{/addTask(id=${task.id})}"
 								sec:authorize="hasRole('ROLE_ADMIN')">Edit</a></td>
 						</tr>
 

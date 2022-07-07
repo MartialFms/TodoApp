@@ -21,5 +21,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 //		public Page<UserTask> findByDescriptionContainsAndCategoryId(String description, Long categoryId, Pageable pageable);
 //		Page<UserTask> findByCategoryId(long catId, Pageable pageable);
 //		List<UserTask> findByBrandContains(String string);
+	User findFirstByUsername(String name);
 
 }
