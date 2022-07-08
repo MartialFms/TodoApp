@@ -15,7 +15,6 @@
 </head>
 
 <body>
-	<!-- Top ----------------------------------------------------------------------------------------------------------------------------------------- -->
 	<div class="row">
 		<div class="col-1">
 			<a class="m-5" href="#"> <img alt=""
@@ -25,64 +24,45 @@
 		</div>
 		<div class="col-8">
 			<div class="row">
-				<h5 >To do or not to ...</h5>
+				<h5>To do or not to ...</h5>
 			</div>
 			<div class="row">
 				<ul class="nav nav-tabs">
 					<!-- 					<li class="nav-item"><a th:class="${currentPage==status.index}?'nav-link active':'nav-link'" href="#">Active</a></li> -->
 					<li class="nav-item nav-link"><a th:href="@{/home}">Home</a></li>
-					<li class="nav-item nav-link"><a th:href="@{/tables}"
-						>Tables</a></li>
-					<li class="nav-item nav-link"><a th:href="@{/tasks}"
-						>Tasks</a></li>
-					<li class="nav-item nav-link" sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/user}"
-						>Users</a></li>
-					<!-- 						<li class="nav-item"><a class="nav-link disabled">Disabled</a> -->
-
-
-
-
-
-
-
-
-
-
+					<li class="nav-item nav-link"><a th:href="@{/tables}">Tables</a></li>
+					<li class="nav-item nav-link"><a th:href="@{/tasks}">Tasks</a></li>
+					<li class="nav-item nav-link" sec:authorize="hasRole('ROLE_ADMIN')"><a
+						th:href="@{/user}">Users</a></li>
 
 				</ul>
 
 			</div>
 		</div>
 		<div class="col-3">
-		<div>
-							<div class="authName"  sec:authorize="isAuthenticated()">Bonjour : <a th:text="${auth}"></a></div>
-					<div class="authName" sec:authorize="!isAuthenticated()">Welcome to our website</div>
-		
-		</div>
-		<div sec:authorize="!isAuthenticated()">
-			<button type="button" class="btn btn-primary" data-bs-toggle="modal"
-				data-bs-target="#loginModal">Login</button>
-			<!-- 				<button type="button" class="btn btn-primary" data-bs-toggle="modal" -->
-			<!-- 					data-bs-target="#loginModal">Logout</button> -->
-</div>
+			<div>
+				<div class="authName" sec:authorize="isAuthenticated()">
+					Bonjour : <a th:text="${auth}"></a>
+				</div>
+				<div class="authName" sec:authorize="!isAuthenticated()">Welcome
+					to our website</div>
+
+			</div>
+			<div sec:authorize="!isAuthenticated()">
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+					data-bs-target="#loginModal">Login</button>
+			</div>
 			<div sec:authorize="isAuthenticated()">
-				<a th:href="@{/logout}"><button type="button" class="btn btn-primary">Logout</button></a>
+				<a th:href="@{/logout}"><button type="button"
+						class="btn btn-primary">Logout</button></a>
 			</div>
 
 		</div>
 
 	</div>
 
-	<!-- Search ------------------------------------------------- -->
-
-
-
-	<!-- Login ------------------------------------------------- -->
 	<section layout:fragment="content"></section>
 
-
-
-	<!-- scripts ----------------------------------------------------------------------------------------------------------------------------------------- -->
 	<script src="js/jquery-3.6.0.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>

@@ -34,8 +34,7 @@
 				</div>
 				<div class="col-7"></div>
 				<div class="col-2">
-				<a class="btn btn-success"
-								th:href="@{/add-task}">Add User</a>
+					<a class="btn btn-success" th:href="@{/add-task}">Add User</a>
 				</div>
 
 
@@ -49,8 +48,8 @@
 							<th>Last name</th>
 							<th>Password</th>
 							<th>User-right</th>
-							<th>Active</th>							
-							
+							<th>Active</th>
+
 							<th>Action(s)</th>
 
 						</tr>
@@ -63,14 +62,13 @@
 							<td th:text="${u.password}"></td>
 							<td th:text="${u.role}"></td>
 							<td th:text="${u.active}"></td>
-							
-							
-							
+
+
+
 							<td><a class="btn btn-danger"
 								th:href="@{/deleteUser(id=${u.id} , page=${currentPage},keyword=${keyword})}"
 								sec:authorize="hasRole('ROLE_ADMIN')">Delete</a> <a
-								class="btn btn-warning ms-4"
-								th:href="@{/editUser(id=${u.id})}"
+								class="btn btn-warning ms-4" th:href="@{/editUser(id=${u.id})}"
 								sec:authorize="hasRole('ROLE_ADMIN')">Edit</a></td>
 						</tr>
 
@@ -118,6 +116,4 @@
 			crossorigin="anonymous"></script>
 	</div>
 </body>
-
-
 </html>

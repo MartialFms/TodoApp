@@ -18,7 +18,6 @@ public class TaskTable {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String tableName;
-	//private int hardness;		// 1 - 10
 	
 	@OneToMany(mappedBy ="taskTable")
 	private Collection<UserTask> accountDetails;

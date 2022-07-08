@@ -16,10 +16,7 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<!-- <div class="card bg-dark text-danger position-absolute top-50 start-50 translate-middle m-5 p-5"> -->
-		<!-- 					<h1>Merci de vous connecter <i class="bi bi-cursor"></i></h1> -->
-		<!-- </div> -->
-
+		<h5>Merci de vous connecter</h5>
 		<div id="loginFragment" style="visibility: hidden">
 			<div th:fragment="loginArea">
 				<!-- Modal -->
@@ -61,7 +58,10 @@
 								</div>
 							</div>
 							<div class="mb-3 row fst-italic px-4 pb-4">
-								<a> Not yet registered ? Please sign up !</a>
+
+
+								<a data-bs-toggle="modal" data-bs-target="#UserModal"> Not
+									yet registered ? Please sign up !</a>
 							</div>
 							<div class="position-absolute bottom-0 end-0 m-2">
 								<button class="btn btn-success" type="submit">Connecter</button>
@@ -76,6 +76,14 @@
 		</div>
 	</div>
 
+	<!-- Modal ----------------------------------------------------------------------------------------------------------------------------------------- -->
+	<div class="modal fade" id="UserModal" tabindex="-1"
+		aria-labelledby="UserModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div th:insert="~{/addUser :: registerArea}"></div>
+
+		</div>
+	</div>
 
 	<script src="http://code.jquery.com/jquery-3.6.0.js"></script>
 	<script

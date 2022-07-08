@@ -64,7 +64,7 @@
 								th:href="@{/deleteTask(id=${task.id} , page=${currentPage},keyword=${keyword})}"
 								sec:authorize="hasRole('ROLE_ADMIN')">Delete</a> <a
 								class="btn btn-warning ms-4"
-								th:href="@{/addTask(id=${task.id})}"
+								th:href="@{/editTask(id=${task.id})}"
 								sec:authorize="hasRole('ROLE_ADMIN')">Edit</a></td>
 						</tr>
 
